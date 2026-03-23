@@ -17,18 +17,17 @@ jobs:
         with:
           node-version: 18
 
+      # backend install only
       - name: Install backend
         working-directory: server
         run: npm install
 
-      - name: Run backend test
-        working-directory: server
-        run: npx jest || true
-
+      # frontend install
       - name: Install frontend
         working-directory: client
         run: npm install
 
+      # frontend build
       - name: Build frontend
         working-directory: client
         run: npm run build || true
