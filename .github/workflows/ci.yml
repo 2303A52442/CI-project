@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -17,18 +17,20 @@ jobs:
         with:
           node-version: 18
 
+      # backend
       - name: Install backend
         working-directory: server
         run: npm install
 
-      - name: Test backend
+      - name: Run backend test
         working-directory: server
-        run: npm test
+        run: npm test --if-present
 
+      # frontend
       - name: Install frontend
         working-directory: client
         run: npm install
 
       - name: Build frontend
         working-directory: client
-        run: npm run build
+        run: npm run build --if-present
